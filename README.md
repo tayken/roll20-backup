@@ -31,7 +31,9 @@ file.
 ```ini
 CAMPAIGN_ID=XXXXXXX
 OUTPUT_FOLDER=<path_to_output_folder>
+MIN_POST_ID=XXXXXXXX                    # Minimum post ID to download, optional
 ```
+If `MIN_POST_ID` is omitted, the script downloads all forum posts.
 ## Usage
 Run the script with the following command:
 ```bash
