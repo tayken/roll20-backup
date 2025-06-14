@@ -15,9 +15,11 @@ base_url = 'https://app.roll20.net'
 
 def download_post(post_url, file_path):
     post_req = requests.get(post_url)
-    base = re.findall(r'decode\(\".*\"\)', post_req.text)[0]
-    base = re.sub(r'\"\).*$', '', base.replace('decode("', ''))
-    decoded = base64.b64decode(base)
+    decoded = bytes()
+    entries = re.findall(r'decode\(\".*\"\)', post_req.text)
+    for entry in entries:
+        entry = re.sub(r'\"\).*$', '', entry.replace('decode("', ''))
+        decoded += base64.b64decode(entry)
 
     with open(file_path, 'w') as f:
         f.write(md(decoded))
