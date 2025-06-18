@@ -39,7 +39,7 @@ def parse_forum_page(page_url, output_folder, min_post_id):
         post_id = post_url.split('/')[-2]
         post_title = post.get_text()
 
-        filename = f'{post_id} - {post_title}.md'
+        filename = f'{post_id} - {post_title}.md'.replace('/', '-')
         file_path = f'{output_folder}/{filename}'
 
         if int(post_id) < min_post_id:
